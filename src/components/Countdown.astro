@@ -1,0 +1,100 @@
+---
+// src/components/Countdown.astro
+interface Props {
+  targetDate?: string;
+}
+// import { format } from "prettier";
+const { targetDate = "2024-12-31" } = Astro.props;
+// Set your target date here (format: YYYY-MM-DD or full ISO string)
+---
+
+<div class="countdown-timer">
+  <div class="time-segment">
+    <span class="number" id="days">00</span>
+    <span class="label">Days</span>
+  </div>
+  <div class="time-segment">
+    <span class="number" id="hours">00</span>
+    <span class="label">Hours</span>
+  </div>
+  <div class="time-segment">
+    <span class="number" id="minutes">00</span>
+    <span class="label">Minutes</span>
+  </div>
+  <div class="time-segment">
+    <span class="number" id="seconds">00</span>
+    <span class="label">Seconds</span>
+  </div>
+</div>
+
+<style>
+  .countdown-timer {
+    display: flex;
+    gap: 2rem;
+    font-family: system-ui, sans-serif;
+    padding: 1rem;
+    background: #1a1a1a;
+    border-radius: 8px;
+  }
+
+  .time-segment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .label {
+    font-size: 0.875rem;
+    color: #888;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+</style>
+
+<script>
+  // Client-side code that will run in the browser
+  function startTimer() {
+    const target = new Date("${targetDate}").getTime();
+
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      daysEl!.textContent = days.toString().padStart(2, "0");
+      hoursEl!.textContent = hours.toString().padStart(2, "0");
+      minutesEl!.textContent = minutes.toString().padStart(2, "0");
+      secondsEl!.textContent = seconds.toString().padStart(2, "0");
+    }
+
+    // Update immediately and then every second
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+  }
+
+  // Start the timer when the component mounts
+  document.addEventListener("DOMContentLoaded", startTimer);
+</script>
