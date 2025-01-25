@@ -1,0 +1,125 @@
+---
+import { Image } from "astro:assets";
+import background from "../assets/background.svg";
+import CreatorImage from "../assets/creator-working-from-home.jpg";
+---
+
+<div id="container" class="pt-5 pb-10">
+  <div
+    class="w-full flex justify-center md:justify-between items-center px-5 md:px-10 lg:px-40 xl:px-40 2xl:px-[500px]"
+  >
+    <h6 class="tracking-tight text-center md:text-left font-medium text-base">
+      Creative Hustle Framework
+    </h6>
+    <a
+      href=""
+      class="w-fit hidden md:flex bg-purple-600 text-sm text-white tracking-tight font-medium px-6 py-4 rounded-full"
+    >
+      Get full access now</a
+    >
+  </div>
+  <img id="background" src={background.src} alt="" fetchpriority="high" />
+  <main
+    class="max-w-5xl mx-4 md:mx-auto flex flex-col items-center pt-5 md:pt-10"
+  >
+    <span
+      class="box w-fit text-center text-sm p-2 bg-white tracking-tight font-normal"
+      >For Creators Tired of Watching Others Monetize Their Creativity While
+      They’re Stuck Hustling for Free…
+    </span>
+    <h1
+      class="text-center px-4 md:px-0 text-2xl md:w-4/6 pt-8 md:text-3xl tracking-tight font-medium leading-9 md:leading-10"
+    >
+      Discover a Simple <span class="highlight"> Step-By-Step </span>
+      Guide to Help You <span class="has-underline relative">
+        Monetize Your Creativity
+      </span>
+      …Secure Brand Deals…and Build a Profitable Online Business in 4 Months Without
+      Burnout or Guesswork
+    </h1>
+    <div
+      class="bg-white box w-full md:w-4/6 h-[310px] md:h-96 overflow-hidden mt-5 p-1"
+    >
+      <Image
+        src={CreatorImage}
+        alt="Dimeji Creator working from home"
+        loading={"lazy"}
+        class="w-full h-[300px] md:h-[376px] object-cover rounded-[12px]"
+      />
+    </div>
+    <p class="flex mt-5 text-base font-medium tracking-tighter">
+      Limited to only{" "}
+      <span class="text-purple-600 mx-[2px]">0 of 75 {" "}</span>
+      {" "} creators
+    </p>
+    <a
+      href=""
+      class="w-fit mt-2 bg-purple-600 text-white tracking-nro font-medium px-6 py-4 rounded-full"
+    >
+      Click here to Monetize your creativity <span>$27</span>
+      <span class="line-through">$49</span>
+    </a>
+  </main>
+</div>
+
+<style is:global>
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    filter: blur(100px);
+  }
+
+  #container {
+    font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+      Arial, sans-serif;
+  }
+
+  #hero {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .box {
+    background: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    border: 0.4px solid purple;
+  }
+
+  .highlight {
+    padding: 0px 18px 0px 10px;
+    background: linear-gradient(
+      90deg,
+      rgba(254, 226, 121, 0.9),
+      rgba(254, 226, 121, 0.2)
+    );
+    border-radius: 10px 4px 2px 7px;
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+    -ms-transform: rotate(2deg);
+    -o-transform: rotate(2deg);
+    transform: rotate(2deg);
+    position: relative;
+    display: inline-block;
+  }
+
+  .has-underline::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 75%;
+    left: 0;
+    background: url(https://aliabdaal.com/wp-content/themes/ali-abdaal/assets/images/fgp/single-underline-blue.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(4deg);
+    z-index: 1;
+  }
+</style>
