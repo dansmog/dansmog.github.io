@@ -60,6 +60,14 @@
       property="og:description"
       content="Learn how to monetize your creative skills with the Amplify & Scale Framework. Get a clear roadmap, scalable revenue strategies, templates for pitching brands, and tools to price your services confidently. Perfect for creators and creative entrepreneurs looking to build multiple income streams, secure partnerships, and streamline their business."
     />
+
+    <script>
+      import { initializeNavigation } from "../scripts/smoothscroller";
+      // Initialize when DOM is ready
+      document.addEventListener("DOMContentLoaded", () => {
+        initializeNavigation();
+      });
+    </script>
   </head>
   <body>
     <slot />
